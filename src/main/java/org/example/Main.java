@@ -46,18 +46,23 @@ public class Main
     // Displays the home screen
     private static void displayHomeScreen()
     {
-        System.out.println("HOME SCREEN");
-        System.out.println("D) Add Deposit");
-        System.out.println("P) Make Payment (Debit)");
-        System.out.println("L) Ledger");
-        System.out.println("X) Exit");
-        System.out.print("\nPlease select an option: ");
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║  HOME SCREEN                       ║");
+        System.out.println("╠════════════════════════════════════╣");
+        System.out.println("║  D) Add Deposit                    ║");
+        System.out.println("║  P) Make Payment (Debit)           ║");
+        System.out.println("║  L) Ledger                         ║");
+        System.out.println("║  X) Exit                           ║");
+        System.out.println("╚════════════════════════════════════╝");
+        System.out.print("► Please select an option: ");
     }
 
     // Adds a new deposit to the ledger from user input
     private static void addDeposit()
     {
-        System.out.println("\n--- Add Deposit ---");
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║  ADD DEPOSIT                       ║");
+        System.out.println("╚════════════════════════════════════╝");
 
         try
         {
@@ -65,7 +70,7 @@ public class Main
             LocalTime time = promptForTime();
             String description = promptForDescription();
             String vendor = promptForVendor();
-            double amount = promptForAmount(true);
+            double amount = promptForAmount();
 
             Transaction transaction = new Transaction(date, time, description, vendor, Math.abs(amount));
             FileManager.saveTransaction(transaction);
@@ -81,7 +86,9 @@ public class Main
     // Makes a new payment to the ledger from user input
     private static void makePayment()
     {
-        System.out.println("\n--- Make Payment ---");
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║  MAKE PAYMENT                      ║");
+        System.out.println("╚════════════════════════════════════╝");
 
         try
         {
@@ -89,7 +96,7 @@ public class Main
             LocalTime time = promptForTime();
             String description = promptForDescription();
             String vendor = promptForVendor();
-            double amount = promptForAmount(false);
+            double amount = promptForAmount();
 
             Transaction transaction = new Transaction(date, time, description, vendor, -Math.abs(amount));
             FileManager.saveTransaction(transaction);
@@ -181,7 +188,7 @@ public class Main
     }
 
     // Prompt user for an amount
-    private static double promptForAmount(boolean isDeposit)
+    private static double promptForAmount()
     {
         while (true)
         {

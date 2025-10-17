@@ -21,13 +21,17 @@ public class Ledger
 
         while (running)
         {
-            System.out.println("Welcome! Please select an option:");
-            System.out.println();
-            System.out.println("A) All Entries");
-            System.out.println("D) Deposits");
-            System.out.println("P) Payments");
-            System.out.println("R) Reports");
-            System.out.println("H) Home");
+            System.out.println("\n╔════════════════════════════════════╗");
+            System.out.println("║  LEDGER MENU                       ║");
+            System.out.println("╠════════════════════════════════════╣");
+            System.out.println("║  A) All Entries                    ║");
+            System.out.println("║  D) Deposits                       ║");
+            System.out.println("║  P) Payments                       ║");
+            System.out.println("║  R) Reports                        ║");
+            System.out.println("║  H) Home                           ║");
+            System.out.println("╚════════════════════════════════════╝");
+            System.out.print("\n► Please select an option: ");
+
 
             String choice = scanner.nextLine().trim().toUpperCase();
 
@@ -55,7 +59,7 @@ public class Ledger
     }
 
     // Display all entries
-    private void displayAllEntries()
+    public void displayAllEntries()
     {
         List<Transaction> transactions = FileManager.loadTransactions();
         displayTransactions(transactions, "All Entries");
@@ -94,7 +98,9 @@ public class Ledger
     // Display transactions
     private void displayTransactions(List<Transaction> transactions, String title)
     {
-        System.out.println(title.toUpperCase());
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║  "+ title.toUpperCase());
+        System.out.println("╚════════════════════════════════════╝");
 
         if (transactions.isEmpty())
             System.out.println("No transactions found.");
@@ -124,7 +130,7 @@ public class Ledger
                 // Compare dates first
                 if (t1.getDate().isBefore(t2.getDate()))
                 {
-                    // Swap if t1 is before t2 (we want newest first)
+                    // Swap if t1 is before t2 (we want the newest first)
                     swap(transactions, j, j + 1);
                 }
                 else if (t1.getDate().isEqual(t2.getDate()))
@@ -147,21 +153,25 @@ public class Ledger
         list.set(j, temp);
     }
 
-    // Display reports menu and handle user input
+    // Display reports a menu and handle user input
     private void displayReportsMenu()
     {
         boolean running = true;
 
         while (running)
         {
-            System.out.println("REPORTS MENU");
-            System.out.println("1) Month To Date");
-            System.out.println("2) Previous Month");
-            System.out.println("3) Year To Date");
-            System.out.println("4) Previous Year");
-            System.out.println("5) Search by Vendor");
-            System.out.println("0) Back");
-            System.out.print("\nPlease select an option: ");
+            System.out.println("\n╔════════════════════════════════════╗");
+            System.out.println("║  REPORTS MENU                      ║");
+            System.out.println("╠════════════════════════════════════╣");
+            System.out.println("║  1) Month To Date                  ║");
+            System.out.println("║  2) Previous Month                 ║");
+            System.out.println("║  3) Year To Date                   ║");
+            System.out.println("║  4) Previous Year                  ║");
+            System.out.println("║  5) Search by Vendor               ║");
+            System.out.println("║  0) Back                           ║");
+            System.out.println("╚════════════════════════════════════╝");
+            System.out.print("\n► Please select an option: ");
+
 
             String choice = scanner.nextLine().trim();
 
@@ -202,7 +212,7 @@ public class Ledger
 
         for (Transaction transaction : allTransactions)
         {
-            // Check if transaction date is on or after start of current month
+            // Check if the transaction date is on or after start of current month
             if (!transaction.getDate().isBefore(startOfMonth))
                 filtered.add(transaction);
         }
@@ -242,7 +252,7 @@ public class Ledger
 
         for (Transaction transaction : allTransactions)
         {
-            // Check if transaction date is on or after start of current year
+            // Check if the transaction date is on or after start of current year
             if (!transaction.getDate().isBefore(startOfYear))
                 filtered.add(transaction);
         }
@@ -280,7 +290,7 @@ public class Ledger
 
         for (Transaction transaction : allTransactions)
         {
-            // Check if vendor matches (case-insensitive)
+            // Check if the vendor matches (case-insensitive)
             if (transaction.getVendor().equalsIgnoreCase(vendorName))
                 filtered.add(transaction);
         }

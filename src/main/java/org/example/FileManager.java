@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FileManager
 {
-    private static final String FILE_NAME = "transactions.csv";
+    private static final String FILE_NAME = "src/main/resources/transactions.csv";
 
     // Saves a transaction to the CSV file
     public static void saveTransaction(Transaction transaction)
